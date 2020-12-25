@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.5.16;
 
 library SafeMath {
@@ -348,8 +349,7 @@ contract LinearVesting is ReentrancyGuard {
     // Accessors
 
     /**
-     * @notice Vested token balance for a beneficiary
-     * @dev Must be called directly by the beneficiary assigned the tokens in the schedule
+     * @notice Vested token balance 
      * @return _tokenBalance total balance proxied via the ERC20 token
      */
     function tokenBalance() external view returns (uint256) {
@@ -358,7 +358,6 @@ contract LinearVesting is ReentrancyGuard {
 
     /**
      * @notice Vesting schedule and associated data for a beneficiary
-     * @dev Must be called directly by the beneficiary assigned the tokens in the schedule
      * @return _amount
      * @return _totalDrawn
      * @return _lastDrawnAt
