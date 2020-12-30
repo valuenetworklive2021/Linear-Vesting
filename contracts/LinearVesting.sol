@@ -303,22 +303,31 @@ contract LinearVesting is ReentrancyGuard {
 
     /**
      * @notice Construct a new vesting contract
-     * @param _token ERC20 token
-     * @param _start start timestamp
-     * @param _end end timestamp
-     * @param _cliffDurationInSecs cliff duration in seconds
      * @dev caller on constructor set as owner; this can not be changed
      */
-    constructor(IERC20 _token, uint256 _start, uint256 _end, uint256 _cliffDurationInSecs) public {
-        require(address(_token) != address(0), "VestingContract::constructor: Invalid token");
-        require(_end >= _start, "VestingContract::constructor: Start must be before end");
-
-        token = _token;
+    constructor() public {
         owner = msg.sender;
+        token = IERC20(0xd0f05D3D4e4d1243Ac826d8c6171180c58eaa9BC); // VNTW
+        start = 609459200;         // 2021-01-01T00:00:00.000Z
+        end = 1704067200;          // 2021-01-01T00:00:00.000Z
+        cliffDuration = 2678400;   // 31*24*60*60 = 2678400
+        predefinedBeneficiaries();
+    }
 
-        start = _start;
-        end = _end;
-        cliffDuration = _cliffDurationInSecs;
+    function predefinedBeneficiaries() internal returns (bool) {
+        vestedAmount[0xef66f9c4E3205FF3711de7Aa02e13724c6c1F48A] = 14000000000000000000000000;
+        vestedAmount[0xEF112cD57Bd2cDEed8bd25C736f3a386e131E9B2] = 11000000000000000000000000;
+        vestedAmount[0xB32A83EEC46B116C53a957Cb07318310c390125F] = 1000000000000000000000000;
+        vestedAmount[0x03AeD197207C114a457361CA29e8FC059e66d850] = 1000000000000000000000000;
+        vestedAmount[0x6C620945Ce0F04bd419c38F525d516584A1E304c] = 3500000000000000000000000;
+        vestedAmount[0xD2489211B2e90936320A979a28c1414e811b2BE6] = 2000000000000000000000000;
+        vestedAmount[0x145EF7025A9198954c87476537e0D574AD8290F7] = 300000000000000000000000;
+        vestedAmount[0xdC2CB83423Be01344a39Da294370D5c0B8E6F626] = 300000000000000000000000;
+        vestedAmount[0xaD8A9A4Fb7e93298A1662e018961716E761407E9] = 200000000000000000000000;
+        vestedAmount[0xb2abe10DAE11a6B46C9A77864961483a526FA02D] = 200000000000000000000000;
+        vestedAmount[0xE813Ff71e61E1a22976e6Ed56b021dF796A6c07E] = 500000000000000000000000;
+        vestedAmount[0x0b4d53152f882A219615F148e4C353390072D715] = 2000000000000000000000000;
+        return true;
     }
 
     /**
