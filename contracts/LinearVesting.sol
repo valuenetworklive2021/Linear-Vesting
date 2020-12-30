@@ -309,7 +309,7 @@ contract LinearVesting is ReentrancyGuard {
         owner = msg.sender;
         token = IERC20(0xd0f05D3D4e4d1243Ac826d8c6171180c58eaa9BC); // VNTW
         start = 609459200;         // 2021-01-01T00:00:00.000Z
-        end = 1704067200;          // 2021-01-01T00:00:00.000Z
+        end = 1704067200;          // 2024-01-01T00:00:00.000Z
         cliffDuration = 2678400;   // 31*24*60*60 = 2678400
         predefinedBeneficiaries();
     }
